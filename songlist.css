@@ -1,0 +1,174 @@
+*{
+
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+body,html{
+    
+	margin: 0;
+	padding: 0;
+	background-color: #121212;
+	place-items: center;
+    color:#fff;
+    justify-content: center;
+    align-items: center;
+    
+	
+}
+.bg {
+    height: 150px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    background-image: url("./img/wallpaperflare.com_wallpaper.jpg");
+    background-position: center;
+    filter: blur(8px);
+    position: absolute;
+    z-index: 10;
+}
+.header{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+  
+.information
+{
+    display: flex;
+    align-items: center;
+    padding-bottom: 40px;
+    
+}
+.artist-img
+{
+    height: 250px;
+    width: 250px;
+    padding: 10px 10px;
+    margin-top: 30px;
+    margin-left: 30px;
+    border-radius: 30px;
+} 
+.artist-name
+{
+    min-width: 200px;
+    margin-top: 120px;
+    margin-left: 20px;
+}
+.artist-type
+{
+    margin-top: 200px;
+    margin-left: -200px;    
+}
+.btn
+{
+    display: flex;
+    align-items: center;
+    padding: 40px 50px;
+    gap: 60px;
+    font-size: 40px;
+    cursor: pointer;
+    
+    
+}
+.lists
+{
+    display: flex;
+    font-size: 13px;
+    align-items: center;
+    
+}
+.form
+{
+    font-size: 15px;
+    font-weight: lighter;
+    
+}
+.song-table
+{
+    width: 98%;
+}
+.count
+{
+    padding-left: 25px;
+    padding-top: 20px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+
+  
+}
+.song-table
+{
+    border-collapse: collapse; /* Ensures no gaps between cells */
+    width: 100%; /* Makes the table full width */
+    border: none; /* Removes outer border */}
+.song-count
+{
+    padding-left: 38px;
+    padding-right: 30px;
+    justify-content: center;
+    
+
+  
+}
+
+.title-title
+{
+    padding-top: 20px;
+    padding-right: 1500px;
+    padding-left: 50px;
+    padding-bottom: 20px;
+
+}
+
+.duration
+{
+    
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-right: 80px;
+
+
+}
+
+.song-count
+{
+    padding-left: 40px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+
+
+}
+.song-title
+{
+    padding-left: 50px;
+    padding-top: 20px;
+
+    padding-bottom: 20px;
+}
+.song-duration
+{
+    padding-bottom: 20px;
+    padding-top: 20px;
+    padding-right: 20px;
+
+}
+/* Apply hover effect on table rows */
+.song-table tr:hover {
+    background-color: #2C2B30; /* Light gray background when hovering */
+    cursor: pointer; /* Change cursor to pointer when hovering */
+}
+
+.content-padding
+{
+    display: flex;
+    padding: 40px 40px;
+    margin: 40px;
+}
+
+
+  /* Màu khi hàng được chọn */
+  .song-element.active-row td {
+    background-color: #f0a500; /* Màu vàng nhạt */
+    color: white; /* Chữ màu trắng */
+  }
+  

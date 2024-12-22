@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <meta charset="UTF-8" />
+  <title>Muplex</title>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+  <link rel="stylesheet" href="songlist.css" />
+  <script src="app.js"></script>
+  <script src="artist.js"></script>
+  <script src="script.js"></script>
+
+  <body>
+    <div id="artistbg">
+        
+    </div>
+    <div class="header">
+      <div id="artistinfo">
+        <script>
+          artistInfo();
+        </script>
+      </div>
+      <script src="artist.js"></script>
+    
+    <div class="btn">
+      <i
+        class="fa-solid fa-play"
+        id="play-icon"
+        onclick="togglePlayPause()"
+      ></i>
+      <i
+        class="fa-solid fa-pause"
+        id="pause-icon"
+        onclick="togglePlayPause()"
+        style="display: none"
+      ></i>
+      <i class="fa-solid fa-shuffle"></i>
+    </div>
+    <div class="lists">
+      <div id="songlists"></div>
+    </div>
+    </div>
+
+
+
+    <script>
+      displayArtistSongs();
+    </script>
+
+<div class="content-padding"></div>        
+
+    <script src="song.js"></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>

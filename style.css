@@ -1,0 +1,255 @@
+*{
+
+	box-sizing: border-box;
+	font-family: 'Poppins', sans-serif;
+}
+body,html{
+    
+	margin: 0;
+	padding: 0;
+	color: #fff;
+	place-items: center;
+  background: linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%);
+
+	
+}
+
+.toppage
+{
+    display: flex; /* Flexbox for horizontal layout */
+    justify-content: space-between; /* Space between title and button */
+    align-items: center; /* Vertically center the content */
+    background-color: white; /* Background color of the block */
+    color: white; /* Text color */
+    padding: 5px 5px; /* Padding inside the block */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for effect */
+    position: fixed; /* Fix it at the top of the page */
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width at the top */
+    z-index: 1000; /* Ensure it's above other elements */
+
+}
+
+.toppage-title
+{
+    padding-left: 250px;
+    margin: 5px;   
+
+}
+.toppage-title-word
+{
+    color: black;
+   
+    letter-spacing: inherit;
+  line-height: inherit;
+  margin: 0;
+  text-decoration: none;
+  white-space: nowrap;
+    
+}
+.toppage-loginbnt
+{
+    padding-right: 200px;
+}
+.loginbtn
+{
+    size: 20px;
+  
+    text-decoration: none;
+    background-color: #C53B5F;
+    border: none;
+    color:white;
+    font-weight: 100;
+    font-style:italic;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+    align-content: center;
+    transition: opacity 0.5s ease;
+    
+}
+
+/* Styling for the introbox */
+/* Main container for the intro box */
+.introbox {
+    position: relative; /* Position context for child elements */
+    width: 100vw; /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+    overflow: hidden; /* Hide content that overflows the introbox */
+    z-index: 1; /* Set base z-index */
+}
+
+/* Blurred background image */
+.introbox-bgimg {
+    position: absolute; /* Make it cover the container */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("img/wallpaperflare.com_wallpaper\(2\).jpg");
+    background-size: cover; /* Ensure the image covers the container */
+    background-repeat: no-repeat;
+    background-position: center; /* Center the image */
+    z-index: 0; /* Ensure it's below the content */
+}
+
+/* Content overlay */
+.introbox-content {
+    border-radius: 50px;
+    position: relative; /* Position relative to the introbox */
+    z-index: 2; /* Place it above the background */
+    color: white; /* Text color for visibility */
+    text-align: center; /* Center align all text */
+    padding: 20px; /* Add spacing inside the content */
+    width: 25%; /* Optional: Adjust content width */
+    margin: auto; /* Center the content box horizontally */
+    top: 50%; /* Center it vertically */
+    transform: translateY(-50%); /* Adjust for perfect vertical centering */
+}
+
+/* Title styles */
+.introbox-webname-title {
+    font-size: 70px; /* Title font size */
+    font-family:Arial, Helvetica, 'sans-serif';
+    font-weight: bold;
+    margin-bottom: 50px;
+    
+}
+
+/* Music icon styles */
+i.fa-solid.fa-music {
+    font-size: 40px; /* Icon size */
+    margin-left: 10px; /* Add space between text and icon */
+}
+
+/* Description styles */
+
+.introbox-webdes h2
+{
+    font-size: 30px; 
+    text-overflow: ellipsis; 
+    
+
+    margin-bottom: 60px; /* Add space below the paragraph */
+}
+.introbox-webdes p {
+    font-size: 20px; /* Paragraph font size */
+    text-overflow: ellipsis; 
+    font-weight: inherit;
+    margin-bottom: 50px; /* Add space below the paragraph */
+}
+
+/* Button styles */
+.introbox-btn button {
+    background-color: #ee4158; /* Blue button */
+    color: rgb(255, 255, 255); /* Button text color */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Button padding */
+    font-size: 1rem; /* Button font size */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth hover transition */
+    border-radius: 20px;
+}
+
+.introbox-btn button:hover {
+    background-color: #da132e; 
+}
+
+.content
+{
+    position: relative;
+    background-color: #282828;
+    align-items: center;
+    justify-content: center;
+    place-items: center;
+    width: 100vw;
+    height: 1000vh;
+}
+
+.searchbox
+{
+    display:block;
+    padding-left: 42%;
+    margin-bottom: 80px;
+
+}
+.content-searchbox
+{
+    border-radius: 20px;
+    padding: 10px 60px;
+    margin-top: 50px;
+
+}
+.content-searchbtn
+{
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    font-size: 20px;
+    padding: 10px 10px;
+    cursor: pointer;
+}
+
+.artist-container
+{
+    margin-top: 30px;
+}
+
+.artist-row {
+    display: flex;
+    flex-wrap: wrap; /* Ensures items wrap to the next row */
+    margin-bottom: 20px;
+    justify-content: flex-start; /* Aligns items to the left */
+    gap: 20px; /* Adds consistent spacing between items */
+}
+
+.artist {
+    flex: 1 1 calc(25% - 20px); /* Ensures 4 items per row with space for gap */
+    max-width: calc(25% - 20px); /* Prevents overflow */
+    box-sizing: border-box; /* Includes padding and border in width */
+    padding: 10px;
+    margin-top: 20px;
+    text-align: center;
+    border-radius: 5px;
+    background: none;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.artist img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.artist h3 {
+    color: #C53B5F;
+    font-size: 16px;
+    margin: 10px 0;
+}
+.artist-img
+{
+    
+        width: 200px;
+        height: 200px;
+        object-fit: cover; 
+        border-radius: 8px; 
+      
+      
+}
+
+.artist p {
+    margin: 5px 0;
+    font-size: 15px;
+    color: white;
+}
+
+.artist:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
