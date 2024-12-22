@@ -1,8 +1,8 @@
 
 
-# WeebMusicWeb
+# PlasticMemisc
 
-WeebMusicWeb is a web-based application designed for anime music fans to discover and enjoy their favorite tracks from anime. Whether you're looking for the latest openings, endings, or just your favorite OSTs, WeebMusicWeb brings the music from your favorite shows to your browser.
+PlasticMemisc is a web-based application designed for anime music fans to discover and enjoy their favorite tracks from anime. Whether you're looking for the latest openings, endings, or just your favorite OSTs, PlasticMemisc brings the music from your favorite shows to your browser.
 
 ## Features
 
