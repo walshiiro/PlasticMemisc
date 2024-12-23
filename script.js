@@ -1,7 +1,4 @@
-document.getElementById('explorenowbtn').addEventListener('click', function () {
-  const aboutMeBox = document.getElementById('content1');
-  aboutMeBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
-});
+
 
 function renderArtists(artists) {
   const container = document.getElementById('artist-container');
@@ -91,40 +88,6 @@ function artistInfo() {
 }
 
 
-// function togglePlayPause() {
-//     const playIcon = document.getElementById('play-icon');
-//     const pauseIcon = document.getElementById('pause-icon');
-
-//     if (!audioPlayer) {
-//         audioPlayer = document.querySelector('audio'); // Lấy trình phát nhạc
-//         if (!audioPlayer) {
-//             console.error("Audio player not found!");
-//             return;
-//         }
-//     }
-
-//     if (isPlaying) {
-//         // Nếu đang phát, dừng nhạc
-//         audioPlayer.pause();
-//         isPlaying = false;
-//         playIcon.style.display = 'inline';
-//         pauseIcon.style.display = 'none';
-//         console.log('Paused');
-//     } else {
-//         // Nếu đang dừng, phát nhạc
-//         if (audioPlayer.src) {
-//             audioPlayer.play();
-//             isPlaying = true;
-//             playIcon.style.display = 'none';
-//             pauseIcon.style.display = 'inline';
-//             console.log('Playing');
-//         } else {
-//             console.error("No song selected to play!");
-//         }
-//     }
-// }
-
-
 
 function displayArtistSongs() {
   const params = new URLSearchParams(window.location.search);
@@ -147,15 +110,87 @@ function displayArtistSongs() {
 
   const tableBody = document.getElementById("songTableBody");
 
-  const audioPlayer = document.createElement("audio");
-  audioPlayer.setAttribute("controls", "true");
-  audioPlayer.style.display = "none"; // Ẩn trình phát nhạc
-  document.body.appendChild(audioPlayer);
+// Tạo một <div> mới
+const audioContainer = document.createElement("div");
+audioContainer.classList.add = "audioContainer"; 
 
-  let previouslySelectedRow = null; // Lưu hàng được chọn trước đó
-  let currentSongIndex = -1; // Chỉ số bài hát hiện tại
-  let filteredSongs = []; // Danh sách bài hát được lọc theo nghệ sĩ
+// Tạo phần tử <audio>
+const audioPlayer = document.createElement("audio");
+audioPlayer.setAttribute("controls", "true");
+audioPlayer.id = "myAudioPlayer";
 
+// Thêm phần tử <audio> vào <div>
+audioContainer.appendChild(audioPlayer);
+
+// Thêm <div> vào trong body
+document.body.appendChild(audioContainer);
+
+  let previouslySelectedRow = null; 
+  let currentSongIndex = -1; 
+  let filteredSongs = []; 
+  let isPlaying = false; 
+
+  const playIcon = document.getElementById('play-icon');
+  const pauseIcon = document.getElementById('pause-icon');
+
+  // Function to toggle play and pause
+  function togglePlayPause() {
+      if (isPlaying) {
+          audioPlayer.pause();
+          isPlaying = false;
+          playIcon.style.display = 'inline'; // Show the play icon
+          pauseIcon.style.display = 'none'; // Hide the pause icon
+      } else {
+          if (currentSongIndex === -1) {
+              playSong(0, tableBody.children[0]);
+          } else {
+              // Else, just play the current song
+              audioPlayer.play();
+              isPlaying = true;
+              playIcon.style.display = 'none'; // Hide play icon
+              pauseIcon.style.display = 'inline'; // Show pause icon
+          }
+      }
+  }
+
+  // Function to play the song
+  function playSong(index, songRow) {
+      const song = filteredSongs[index];
+      currentSongIndex = index;
+
+      // Reset màu của hàng trước đó (nếu có)
+      if (previouslySelectedRow) {
+          previouslySelectedRow.querySelector(".song-count").style.color = "";
+          previouslySelectedRow.querySelector(".song-title").style.color = "";
+          previouslySelectedRow.querySelector(".song-duration").style.color = "";
+      }
+
+      // Lưu hàng hiện tại là hàng đã chọn
+      previouslySelectedRow = songRow;
+
+      // Cập nhật trình phát nhạc
+      const mp3FileName = `songfile/${song.name}.mp3`;
+      audioPlayer.src = mp3FileName;
+      audioPlayer.play(); // Play the audio automatically when the song is selected
+      isPlaying = true;
+      playIcon.style.display = 'none'; // Hide play icon
+      pauseIcon.style.display = 'inline'; // Show pause icon
+
+      // Update the song row's color
+      songRow.querySelector(".song-count").style.color = `#03fc7f`;
+      songRow.querySelector(".song-title").style.color = `#03fc7f`;
+      songRow.querySelector(".song-duration").style.color = `#03fc7f`;
+  }
+
+  // Lắng nghe sự kiện kết thúc bài hát
+  audioPlayer.addEventListener("ended", () => {
+      if (currentSongIndex + 1 < filteredSongs.length) {
+          const nextSongRow = tableBody.children[currentSongIndex + 1];
+          playSong(currentSongIndex + 1, nextSongRow);
+      }
+  });
+
+  // Load song list
   fetch('song.js')
       .then(response => response.json())
       .then(lists => {
@@ -173,11 +208,15 @@ function displayArtistSongs() {
 
               songRow.innerHTML = `
                   <td class="song-count">${count}</td>
-                  <td class="song-title">${song.name}</td>
+                  <td class="song-title">
+                  <div class="song-info">
+                  <img src="songicon/${song.img}" alt="${song.name}" class="songicon" />
+                  <span class="song-name">${song.name}</span>
+                  </div></td>
                   <td class="song-duration">${song.time}</td>
               `;
 
-              // Thêm sự kiện click
+              // Add event listener for row click to play the song
               songRow.addEventListener("click", () => {
                   playSong(index, songRow);
               });
@@ -190,76 +229,9 @@ function displayArtistSongs() {
           songlists.innerHTML = `<p class="error">Failed to load songs.</p>`;
       });
 
-  function playSong(index, songRow) {
-      const song = filteredSongs[index];
-      currentSongIndex = index;
-
-      const artist = listartist.find(artist => artist.name === artistName);
-
-      // Reset màu của hàng trước đó (nếu có)
-      if (previouslySelectedRow) {
-          previouslySelectedRow.querySelector(".song-count").style.color = "";
-          previouslySelectedRow.querySelector(".song-title").style.color = "";
-          previouslySelectedRow.querySelector(".song-duration").style.color = "";
-      }
-
-      // Lưu hàng hiện tại là hàng đã chọn
-      previouslySelectedRow = songRow;
-
-      // Cập nhật trình phát nhạc
-      const mp3FileName = `songfile/${song.name}.mp3`;
-      audioPlayer.src = mp3FileName;
-      audioPlayer.play();
-      audioPlayer.style.display = "block"; // Hiển thị trình phát nhạc
-
-      // Tạo canvas để xử lý màu từ ảnh
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-
-      const img = new Image();
-      img.src = `${artist.img}`; 
-      img.crossOrigin = "Anonymous";
-
-      img.onload = () => {
-          canvas.width = img.width;
-          canvas.height = img.height;
-          ctx.drawImage(img, 0, 0, img.width, img.height);
-
-          // Lấy dữ liệu pixel
-          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-          let r = 0, g = 0, b = 0;
-
-          for (let i = 0; i < imageData.length; i += 4) {
-              r += imageData[i];
-              g += imageData[i + 1];
-              b += imageData[i + 2];
-          }
-
-          const pixelCount = imageData.length / 4;
-          r = Math.floor(r / pixelCount);
-          g = Math.floor(g / pixelCount);
-          b = Math.floor(b / pixelCount);
-
-          // Đổi màu chữ của hàng được chọn
-          songRow.querySelector(".song-count").style.color = `rgb(${r}, ${g}, ${b})`;
-          songRow.querySelector(".song-title").style.color = `rgb(${r}, ${g}, ${b})`;
-          songRow.querySelector(".song-duration").style.color = `rgb(${r}, ${g}, ${b})`;
-
-          console.log(`Color applied: rgb(${r}, ${g}, ${b})`);
-      };
-
-      img.onerror = () => {
-          console.error("Failed to load image.");
-      };
-  }
-
-  // Lắng nghe sự kiện kết thúc bài hát
-  audioPlayer.addEventListener("ended", () => {
-      if (currentSongIndex + 1 < filteredSongs.length) {
-          const nextSongRow = tableBody.children[currentSongIndex + 1];
-          playSong(currentSongIndex + 1, nextSongRow);
-      }
-  });
+  // Event listener for the play/pause button
+  playIcon.addEventListener('click', togglePlayPause);
+  pauseIcon.addEventListener('click', togglePlayPause);
 }
 
 

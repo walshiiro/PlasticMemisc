@@ -63,8 +63,9 @@ body,html{
 {
     display: flex;
     align-items: center;
-    padding: 40px 50px;
     gap: 60px;
+    margin-left: 50px;
+    margin-bottom: 20px;
     font-size: 40px;
     cursor: pointer;
     
@@ -100,7 +101,8 @@ body,html{
 {
     border-collapse: collapse; /* Ensures no gaps between cells */
     width: 100%; /* Makes the table full width */
-    border: none; /* Removes outer border */}
+    border: none; /* Removes outer border */
+}
 .song-count
 {
     padding-left: 38px;
@@ -144,6 +146,7 @@ body,html{
     padding-top: 20px;
 
     padding-bottom: 20px;
+  
 }
 .song-duration
 {
@@ -170,5 +173,27 @@ body,html{
   .song-element.active-row td {
     background-color: #f0a500; /* Màu vàng nhạt */
     color: white; /* Chữ màu trắng */
+  }
+  .song-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .songicon {
+    width: 30px; /* Adjust the size of the image */
+    height: 30px; /* Adjust the size of the image */
+    margin-right: 10px; /* Space between image and song name */
+  }
+  
+
+ 
+
+  #myAudioPlayer {
+    position: fixed;  /* Fixes the position relative to the viewport */
+    bottom: 0;        /* Aligns the player to the bottom */
+    left: 30%;          /* Aligns the player to the left */
+    width: 40%;      /* Makes the audio player span the entire width */
+    background-color: #333; /* Optional: adds a background color */
+    color: white;     /* Optional: changes the text color for controls */
   }
   
