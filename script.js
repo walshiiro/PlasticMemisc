@@ -110,21 +110,12 @@ function displayArtistSongs() {
 
   const tableBody = document.getElementById("songTableBody");
 
-// Tạo một <div> mới
-const audioContainer = document.createElement("div");
-audioContainer.classList.add = "audioContainer"; 
-
-// Tạo phần tử <audio>
-const audioPlayer = document.createElement("audio");
-audioPlayer.setAttribute("controls", "true");
-audioPlayer.id = "myAudioPlayer";
-
-// Thêm phần tử <audio> vào <div>
-audioContainer.appendChild(audioPlayer);
-
-// Thêm <div> vào trong body
-document.body.appendChild(audioContainer);
-
+  const audioPlayer = document.createElement("audio");
+  audioPlayer.setAttribute("controls", "true");
+  audioPlayer.id = "myAudioPlayer";
+  
+  document.body.appendChild(audioPlayer);
+  
   let previouslySelectedRow = null; 
   let currentSongIndex = -1; 
   let filteredSongs = []; 
@@ -240,3 +231,4 @@ document.body.appendChild(audioContainer);
 
 
 
+  

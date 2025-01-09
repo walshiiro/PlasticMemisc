@@ -173,7 +173,7 @@ i.fa-solid.fa-music {
 .searchbox
 {
     display:block;
-    padding-left: 42%;
+
     margin-bottom: 80px;
 
 }
@@ -208,9 +208,7 @@ i.fa-solid.fa-music {
 }
 
 .artist {
-    flex: 1 1 calc(25% - 20px); /* Ensures 4 items per row with space for gap */
-    max-width: calc(25% - 20px); /* Prevents overflow */
-    box-sizing: border-box; /* Includes padding and border in width */
+
     padding: 10px;
     margin-top: 20px;
     text-align: center;

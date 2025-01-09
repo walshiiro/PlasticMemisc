@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Audio Player</title>
+  <style>
+    .audio-player {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #333;
+      padding: 10px;
+      border-radius: 10px;
+      color: white;
+      width: 400px;
+    }
+    .audio-player button {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 20px;
+    }
+    .audio-player button:hover {
+      color: yellow;
+    }
+    .progress-bar {
+      flex-grow: 1;
+      position: relative;
+      height: 5px;
+      background: gray;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .progress-bar-filled {
+      height: 100%;
+      width: 0;
+      background: yellow;
+      border-radius: 3px;
+    }
+    .time {
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="audio-player">
+    <button id="shuffle">🔀</button>
+    <button id="prev">⏮</button>
+    <button id="play">▶</button>
+    <button id="next">⏭</button>
+    <button id="loop">🔁</button>
+    <div class="progress-bar" id="progress-bar">
+      <div class="progress-bar-filled" id="progress-filled"></div>
+    </div>
+    <div class="time">
+      <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+    </div>
+  </div>
+  <audio id="audio" src="your-audio-file.mp3"></audio>
+
+  <script>
+    
+    const audio = document.createElement("audio");
+    const playBtn = document.getElementById("play");
+    const prevBtn = document.getElementById("prev");
+    const nextBtn = document.getElementById("next");
+    const shuffleBtn = document.getElementById("shuffle");
+    const loopBtn = document.getElementById("loop");
+    const progressBar = document.getElementById("progress-bar");
+    const progressFilled = document.getElementById("progress-filled");
+    const currentTimeEl = document.getElementById("current-time");
+    const durationEl = document.getElementById("duration");
+
+    let isPlaying = false;
+
+    // Play/Pause Functionality
+    playBtn.addEventListener("click", () => {
+      if (isPlaying) {
+        audio.pause();
+        playBtn.textContent = "▶";
+      } else {
+        audio.play();
+        playBtn.textContent = "⏸";
+      }
+      isPlaying = !isPlaying;
+    });
+
+    // Update Progress Bar
+    audio.addEventListener("timeupdate", () => {
+      const progressPercent = (audio.currentTime / audio.duration) * 100;
+      progressFilled.style.width = `${progressPercent}%`;
+
+      const currentMinutes = Math.floor(audio.currentTime / 60);
+      const currentSeconds = Math.floor(audio.currentTime % 60).toString().padStart(2, "0");
+      currentTimeEl.textContent = `${currentMinutes}:${currentSeconds}`;
+    });
+
+    // Set Duration
+    audio.addEventListener("loadedmetadata", () => {
+      const durationMinutes = Math.floor(audio.duration / 60);
+      const durationSeconds = Math.floor(audio.duration % 60).toString().padStart(2, "0");
+      durationEl.textContent = `${durationMinutes}:${durationSeconds}`;
+    });
+
+    // Seek on Progress Bar Click
+    progressBar.addEventListener("click", (e) => {
+      const clickX = e.offsetX;
+      const width = progressBar.offsetWidth;
+      const duration = audio.duration;
+      audio.currentTime = (clickX / width) * duration;
+    });
+
+    // Loop and Shuffle Buttons
+    loopBtn.addEventListener("click", () => {
+      audio.loop = !audio.loop;
+      loopBtn.style.color = audio.loop ? "yellow" : "white";
+    });
+
+    shuffleBtn.addEventListener("click", () => {
+      alert("Shuffle functionality can be implemented here!");
+    });
+
+    prevBtn.addEventListener("click", () => {
+      alert("Previous functionality can be implemented here!");
+    });
+
+    nextBtn.addEventListener("click", () => {
+      alert("Next functionality can be implemented here!");
+    });
+  </script>
+</body>
+</html>
